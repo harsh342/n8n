@@ -333,7 +333,7 @@ async function handleEnterKey(event: KeyboardEvent) {
 					<ApiKeyScopes
 						v-model="selectedScopes"
 						:available-scopes="availableScopes"
-						:enabled="apiKeyScopesEnabled"
+						:enabled="true"
 						@update:model-value="onScopeSelectionChanged"
 					/>
 				</div>

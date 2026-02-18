@@ -1,5 +1,4 @@
 import { CreateApiKeyRequestDto, UpdateApiKeyRequestDto } from '@n8n/api-types';
-import { LICENSE_FEATURES } from '@n8n/constants';
 import { AuthenticatedRequest } from '@n8n/db';
 import {
 	Body,
@@ -122,14 +121,10 @@ export class ApiKeysController {
 		return scopes;
 	}
 
-	/**
-	 * Resolves the scopes to be used for an API key based on license status.
-	 * If the API Key Scopes feature is not licensed, returns all available scopes for the user's role.
-	 * Otherwise, returns the requested scopes.
-	 */
-	private resolveScopesForUser(user: AuthenticatedRequest['user'], requestedScopes: ApiKeyScope[]) {
-		return this.license.isLicensed(LICENSE_FEATURES.API_KEY_SCOPES)
-			? requestedScopes
-			: getApiKeyScopesForRole(user);
+	private resolveScopesForUser(
+		_user: AuthenticatedRequest['user'],
+		requestedScopes: ApiKeyScope[],
+	) {
+		return requestedScopes;
 	}
 }
